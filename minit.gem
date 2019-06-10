@@ -1,0 +1,7 @@
+name: minit
+description: Minit class
+author: Uchio Kondo
+website: https://github.com/udzura/minit
+protocol: git
+repository: https://github.com/udzura/minit.git
+license: MIT
