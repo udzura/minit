@@ -1,14 +1,13 @@
 /*
-** mrb_minit.c - Minit class
+** minit.c - Minit class
 **
 ** Copyright (c) Uchio Kondo 2019
 **
 ** See Copyright Notice in LICENSE
 */
 
-#include "mruby.h"
-#include "mruby/data.h"
-#include "mrb_minit.h"
+#include <mruby.h>
+#include <mruby/data.h>
 
 #define DONE mrb_gc_arena_restore(mrb, 0);
 
@@ -58,14 +57,14 @@ static mrb_value mrb_minit_hi(mrb_state *mrb, mrb_value self)
 void mrb_minit_gem_init(mrb_state *mrb)
 {
   struct RClass *minit;
-  minit = mrb_define_class(mrb, "Minit", mrb->object_class);
-  mrb_define_method(mrb, minit, "initialize", mrb_minit_init, MRB_ARGS_REQ(1));
-  mrb_define_method(mrb, minit, "hello", mrb_minit_hello, MRB_ARGS_NONE());
-  mrb_define_class_method(mrb, minit, "hi", mrb_minit_hi, MRB_ARGS_NONE());
+  // minit = mrb_define_class(mrb, "Minit", mrb->object_class);
+  minit = mrb_define_module(mrb, "Minit");
+  mrb_define_module_function(mrb, minit, "initialize", mrb_minit_init, MRB_ARGS_REQ(1));
+  mrb_define_module_function(mrb, minit, "hello", mrb_minit_hello, MRB_ARGS_NONE());
+  mrb_define_module_function(mrb, minit, "hi", mrb_minit_hi, MRB_ARGS_NONE());
   DONE;
 }
 
 void mrb_minit_gem_final(mrb_state *mrb)
 {
 }
-
